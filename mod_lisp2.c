@@ -151,11 +151,11 @@ module AP_MODULE_DECLARE_DATA lisp_module;
     }									\
 } while (0)
 
-#define ML_LOG_ERROR(status, r, msg)					\
-  (ap_log_error (APLOG_MARK, APLOG_ERR, (status),			\
-			     		 ((r) -> server), (msg)))
+#define ML_LOG_ERROR(status, r, msg)                                    \
+  (ap_log_error (APLOG_MARK, APLOG_ERR, (status),                       \
+                 (r)->server, "%s", (msg)))
 
-#define ML_LOG_PERROR(r, msg)						\
+#define ML_LOG_PERROR(r, msg)                                           \
   ML_LOG_ERROR ((APR_FROM_OS_ERROR (apr_get_os_error ())), (r), (msg))
 
 #define RELAY_HTTP_ERROR(expr) do					\
@@ -166,9 +166,9 @@ module AP_MODULE_DECLARE_DATA lisp_module;
 } while (0)
 
 #if ENABLE_DEBUG
-#  define ML_LOG_DEBUG(r, msg)						\
-    (ap_log_error (APLOG_MARK, APLOG_DEBUG, APR_SUCCESS,                \
-			       		   ((r) -> server), (msg)))
+#define ML_LOG_DEBUG(r, msg)                                            \
+  (ap_log_error (APLOG_MARK, APLOG_DEBUG, APR_SUCCESS,                  \
+                 (r)->server, "%s", (msg)))
 #else
 #  define ML_LOG_DEBUG(r, msg)
 #endif
