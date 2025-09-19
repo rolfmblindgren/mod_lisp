@@ -140,7 +140,7 @@ module AP_MODULE_DECLARE_DATA lisp_module;
 
 
 
-APLOG_USE_MODULE(lisp2);
+APLOG_USE_MODULE(lisp);
 
 #define RELAY_ERROR(expr) do						\
 {									\
